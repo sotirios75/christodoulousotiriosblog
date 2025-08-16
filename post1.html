@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Οδηγός για το Web Scraping με Python - Το Προσωπικό Μου Ιστολόγιο</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="topbar-social">
+        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.youtube.com/" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <h1>Το Ιστολόγιό Μου</h1>
+    
+    <div class="header-actions">
+        <nav>
+            <ul>
+                <li><a href="index.html">Αρχική</a></li>
+                <li><a href="about.html">Σχετικά με εμένα</a></li>
+                <li><a href="contact.html">Επικοινωνία</a></li>
+            </ul>
+        </nav>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Αναζήτηση άρθρων...">
+        </form>
+        <div id="current-datetime"></div>
+        <button id="theme-toggle-btn">Αλλαγή Θέματος</button>
+    </div>
+</header>
+    
+<main class="main-layout">
+    <article class="single-post">
+        <header class="post-header">
+            <h1>Οδηγός για το Web Scraping με Python</h1>
+            <div class="post-meta">
+                <span><i class="fas fa-calendar-alt"></i> 24 Αυγούστου, 2025</span>
+                <span><i class="fas fa-tag"></i> Τεχνολογία</span>
+                <span><i class="fas fa-user"></i> Χριστοδούλου Σωτήριος</span>
+            </div>
+        </header>
+
+        <img src="./images/test1.jpg" alt="Εικόνα Web Scraping" class="post-image">
+
+        <div class="post-content">
+            <p>Το web scraping είναι μια ισχυρή τεχνική για τη συλλογή δεδομένων από ιστοσελίδες. Στον οδηγό αυτό, θα δούμε πώς μπορούμε να χρησιμοποιήσουμε τη γλώσσα προγραμματισμού Python και τις δημοφιλείς βιβλιοθήκες <strong>Beautiful Soup</strong> και <strong>Requests</strong> για να αυτοματοποιήσουμε τη διαδικασία.</p>
+
+            <h3>Τι είναι το Web Scraping;</h3>
+            <p>Με απλά λόγια, το web scraping είναι η διαδικασία εξαγωγής πληροφοριών από ιστοσελίδες. Αντί να αντιγράφουμε και να επικολλάμε τα δεδομένα με το χέρι, μπορούμε να γράψουμε ένα πρόγραμμα που θα κάνει αυτή τη δουλειά για εμάς, εξοικονομώντας μας χρόνο και κόπο.</p>
+
+            <h3>Βήμα 1: Εγκατάσταση των Απαραίτητων Βιβλιοθηκών</h3>
+            <p>Για να ξεκινήσουμε, πρέπει να εγκαταστήσουμε τις βιβλιοθήκες Requests (για τη λήψη του HTML κώδικα) και Beautiful Soup (για την ανάλυση του HTML). Ανοίξτε το τερματικό σας και πληκτρολογήστε:</p>
+            <pre><code class="language-bash">pip install requests beautifulsoup4</code></pre>
+
+            <h3>Βήμα 2: Ο Κώδικας</h3>
+            <p>Ας δούμε ένα παράδειγμα όπου θα συλλέξουμε τους τίτλους των άρθρων από ένα blog:</p>
+            <pre><code class="language-python">
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://www.example.com/blog'  # Αντικαταστήστε με τη σωστή URL
+response = requests.get(url)
+
+if response.status_code == 200:
+    soup = BeautifulSoup(response.text, 'html.parser')
+    article_titles = soup.find_all('h2')  # Εντοπίστε τους σωστούς HTML selectors
+
+    for title in article_titles:
+        print(title.text.strip())
+else:
+    print(f"Αποτυχία λήψης της σελίδας. Status Code: {response.status_code}")
+            </code></pre>
+        </div>
+        <div class="post-navigation">
+            <a href="index.html" class="back-to-blog">&larr; Επιστροφή στο Blog</a>
+        </div>
+    </article>
+    
+    <aside class="sidebar">
+        <section>
+            <h3>Σχετικά με εμένα</h3>
+            <p>Γεια!Σε αυτό το blog μοιράζομαι τις σκέψεις μου...</p>
+        </section>
+        
+        <section>
+            <h3>Κατηγορίες</h3>
+            <ul>
+                <li><a href="technology.html">Τεχνολογία</a></li>
+                <li><a href="travel.html">Ταξίδια</a></li>
+                <li><a href="free-time.html">Ελευθερος χρονος</a></li>
+				
+            </ul>
+        </section>
+        
+        <section>
+            <h3>Τελευταίες Ειδήσεις</h3>
+            <div id="news-panel">
+                <p>Φόρτωση ειδήσεων...</p>
+            </div>
+        </section>
+    </aside>
+</main>
+
+<button id="back-to-top-btn" title="Επιστροφή στην κορυφή">↑</button>
+
+<footer>
+    <p class="footer-moto">Ανακάλυψε τον κόσμο μέσα από τις λέξεις.</p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/YourProfile" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/YourProfile" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/YourProfile" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('header nav a');
+        navLinks.forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>

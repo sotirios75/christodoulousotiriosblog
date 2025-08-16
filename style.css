@@ -1,0 +1,2034 @@
+/*=====================================
+  1. Βασικά Στυλ & Μεταβλητές Χρωμάτων
+=======================================*/
+:root {
+    --primary-bg: #1e1e1e;
+    --secondary-bg: #2d2d2d;
+    --text-color: #f5f5f5;
+    --link-color: #8ab4f8;
+    --header-bg: #2d2d2d;
+    --footer-bg: #121212;
+    --footer-text-color: #f5f5f5;
+    --border-color: #3e3e3e;
+    --primary-color: #8ab4f8;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #121212;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    position: relative;
+    font-size: 20px;
+    min-height: 100vh;
+}
+
+.navbar,
+footer {
+    background-color: #1f1f1f;
+}
+
+.card,
+.project,
+.hero,
+.category,
+section {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+a {
+    color: #90caf9;
+}
+
+a:hover {
+    color: #f8b400;
+}
+
+.btn-outline-light {
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-outline-light:hover {
+    background-color: yellow;
+    color: #000;
+}
+
+.form-control {
+    background-color: #2c2c2c;
+    color: #fff;
+    border-color: #444;
+}
+
+/*=====================================
+  2. Aurora & Gradient Animation
+=======================================*/
+.aurora-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.aurora-background::before,
+.aurora-background::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    opacity: 0.5;
+    filter: blur(100px);
+    will-change: transform, opacity;
+}
+
+.aurora-background::before {
+    background: radial-gradient(circle, rgba(255,140,0,1) 0%, rgba(255,0,128,1) 50%, rgba(0,123,255,1) 100%);
+    top: -50%;
+    left: -50%;
+    animation: aurora-move-1 20s infinite alternate-reverse;
+}
+
+.aurora-background::after {
+    background: radial-gradient(circle, rgba(255,0,128,1) 0%, rgba(0,123,255,1) 50%, rgba(255,140,0,1) 100%);
+    bottom: -50%;
+    right: -50%;
+    animation: aurora-move-2 25s infinite alternate-reverse;
+}
+
+@keyframes aurora-move-1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(25%, 25%) scale(1.2); }
+}
+
+@keyframes aurora-move-2 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-25%, -25%) scale(1.2); }
+}
+
+.aurora-text {
+    font-weight: bold;
+    font-size: 2.5rem;
+    background: linear-gradient(
+        45deg,
+        #00f5d4,
+        #9b5de5,
+        #00bbf9,
+        #fee440,
+        #00f5d4
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: auroraFlow 6s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes auroraFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.separator {
+    height: 4px;
+    background: linear-gradient(to right, #002fff, #8000ff, #ff0080, #ff8c00);
+    border-radius: 3px;
+    margin: 40px 0;
+    animation: gradientMove 3s infinite alternate;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0%; }
+    100% { background-position: 100%; }
+}
+
+/*=====================================
+  3. Διάταξη Σελίδας
+=======================================*/
+.main-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.sidebar {
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.sidebar section {
+    margin-bottom: 20px;
+}
+
+.posts-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/*=====================================
+  4. Κεφαλίδα (Header)
+=======================================*/
+header {
+    background: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: all 0.3s ease-in-out;
+}
+
+.topbar-social {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #222;
+    padding: 5px 20px;
+    gap: 10px;
+    font-size: 0.8rem;
+}
+
+.topbar-social a {
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.topbar-social a:hover {
+    color: #00bbf9;
+}
+
+header h1 {
+    color: var(--footer-text-color);
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    position: relative;
+    padding: 5px 10px;
+}
+
+header nav a:hover {
+    color: var(--primary-color);
+}
+
+#current-datetime {
+    font-size: 0.9rem;
+    color: var(--footer-text-color);
+}
+
+#theme-toggle-btn {
+    background: linear-gradient(to right, #ff8c00, #ff0080, #007bff);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    position: relative;
+    color: white !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 8px 15px;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #ff8c00, #ff0080, #8000ff);
+    transition: width 0.4s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar-nav .nav-link:hover {
+    background: linear-gradient(90deg, #00f5d4, #9b5de5, #00bbf9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.4s ease;
+}
+
+.navbar {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar.scrolled {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    background-color: rgba(0, 0, 0, 0.95) !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+@keyframes pulseGlow {
+    from { box-shadow: 0 0 5px #f12711; }
+    to { box-shadow: 0 0 15px #f5af19; }
+}
+
+.navbar-nav .nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff8c00, #ff0080, #8000ff);
+    animation: pulseGlow 1.5s infinite alternate;
+    transition: width 0.4s ease;
+}
+
+.dark-mode-icon {
+    width: 40px;
+    height: auto;
+    margin-top: 5px;
+}
+
+/*=====================================
+  5. Ενότητες Περιεχομένου & Άρθρα
+=======================================*/
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+section {
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-top: 15px;
+}
+
+h2 {
+    color: var(--text-color);
+    margin-top: 20px;
+}
+
+h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+article {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+article:last-of-type {
+    border-bottom: none;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #ff8c00, #ff0080, #007bff);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #555;
+}
+
+.blog-post {
+    background-color: #fdfdfd;
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.6s ease;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    margin: 2em auto;
+}
+
+.blog-post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.blog-post h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #0d6efd;
+}
+
+.blog-post h2 a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.blog-post h2 a:hover {
+    color: #0056b3;
+}
+
+.blog-date {
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.read-more {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.project {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.project:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 255, 123, 0.5);
+}
+
+.project h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.project p {
+    color: #555555;
+    margin-top: 10px;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.filters {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.filters .filter-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filters .filter-btn:hover {
+    background-color: #0056b3;
+}
+
+.filter-btn {
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+    text-transform: uppercase;
+}
+
+.filter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 123, 255, 0.9);
+}
+
+.filter-btn::after {
+    content: "";
+    position: absolute;
+    bottom: -35px;
+    width: 100%;
+    height: 30px;
+    background: inherit;
+    border-radius: 8px;
+    opacity: 0.5;
+    transform: scaleY(-1);
+    filter: blur(10px);
+}
+
+.python { background: linear-gradient(45deg, #ff8c00, #ff5e00); }
+.ai { background: linear-gradient(45deg, #8a2be2, #ff1493); }
+.data-science { background: linear-gradient(45deg, #00c853, #00e676); }
+.web-development { background: linear-gradient(45deg, #1e88e5, #42a5f5); }
+.digital-marketing { background: linear-gradient(45deg, #45d32f, #f44336); }
+
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+main img {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.project-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.project-img img {
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.project-img:hover {
+    box-shadow: 0 0 20px rgba(9, 56, 226, 0.8), 0 0 40px rgba(65, 6, 213, 0.5);
+}
+
+.project-img:hover img {
+    transform: scale(1.05);
+}
+
+.custom-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.custom-list li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.custom-list li i {
+    color: #007bff;
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+/*=====================================
+  5.1 Hero Section με εικόνα φόντου
+=======================================*/
+.hero {
+    position: relative;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #f1f1f1;
+    /*
+      Χρησιμοποιούμε εικόνα από το διαδίκτυο για να ελέγξουμε αν ο κώδικας λειτουργεί σωστά.
+      Αν αυτή η εικόνα εμφανιστεί, το πρόβλημα είναι με την τοπική διαδρομή του αρχείου σας.
+    */
+    background-image: url('https://images.unsplash.com/photo-1549490349-f00122822557?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: subtleFlow 15s ease-in-out infinite;
+    border-radius: 15px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+/* Φίλτρο (overlay) για καλύτερη αναγνωσιμότητα του κειμένου */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero::after {
+    /* Το animation glow */
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 70%);
+    animation: glowMove 10s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.hero h1, .hero p, .content {
+    z-index: 3;
+    position: relative;
+}
+
+@keyframes subtleFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes glowMove {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(180deg); }
+    100% { transform: scale(1) rotate(360deg); }
+}
+
+.hero h1, .hero p {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    padding: 60px 20px;
+}
+
+.hero-text {
+    color: white;
+    max-width: 600px;
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    padding: 30px 80px;
+}
+
+/*=====================================
+  6. Υποσέλιδο (Footer)
+=======================================*/
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #222;
+    color: white;
+    margin-top: 20px;
+}
+
+.social-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.social-btn {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 10px;
+    margin: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    color: white;
+    position: relative;
+    font-weight: bold;
+}
+
+.facebook { background: #1877F2; }
+.instagram { background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); }
+.twitter { background: #1DA1F2; }
+.linkedin { background: #0077b5; }
+.github { background: #333; }
+.youtube { background: #FF0000; }
+
+.social-btn:hover {
+    transform: scale(1.2);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-description {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.footer-links, .footer-contact {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li, .footer-contact li {
+    margin-bottom: 10px;
+}
+
+.footer-newsletter input[type="email"] {
+    padding: 8px;
+    width: 70%;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.footer-newsletter button {
+    padding: 8px 15px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer-newsletter button:hover {
+    background-color: #0b5ed7;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+}
+
+/*=====================================
+  7. Ενότητες Ειδικών Σελίδων
+=======================================*/
+.single-post h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.single-post .post-meta {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.single-post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.single-post blockquote {
+    font-style: italic;
+    background-color: var(--primary-bg);
+    border-left: 5px solid var(--border-color);
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+}
+
+.share-buttons {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.share-buttons a {
+    padding: 8px 12px;
+    background-color: #3b5998;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.share-buttons a:hover {
+    background-color: var(--primary-color);
+}
+
+.comments-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+#comment-form input,
+#comment-form textarea {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    width: 100%;
+}
+
+#comment-form button {
+    padding: 12px;
+    background: linear-gradient(to right, #ff8c00, #ff0080, #007bff);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+#comment-form button:hover {
+    opacity: 0.85;
+}
+
+.comment {
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: var(--secondary-bg);
+}
+
+.comment h4 {
+    margin-top: 0;
+}
+
+.contact-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact-section label {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.contact-section input,
+.contact-section textarea {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.contact-section button[type="submit"] {
+    padding: 12px 20px;
+    background: linear-gradient(to right, #ff8c00, #ff0080, #007bff);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.contact-section button[type="submit"]:hover {
+    opacity: 0.85;
+}
+
+#form-messages {
+    margin-bottom: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    font-weight: bold;
+}
+
+.error-message {
+    background-color: #ffebeb;
+    color: #cc0000;
+}
+
+.success-message {
+    background-color: #ebf8e8;
+    color: #388e3c;
+}
+
+#news-panel {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+#news-panel ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#news-panel li {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+#news-panel a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s;
+    font-weight: bold;
+}
+
+#news-panel a:hover {
+    color: var(--primary-color);
+}
+
+.parallax-section {
+    background-image: url('https://via.placeholder.com/1920x1080');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+.parallax-content {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.about-me-intro {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.about-me-intro img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.about-me-intro .about-text h2 {
+    margin-top: 0;
+}
+
+#search-form {
+    max-width: 250px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+}
+
+#back-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(to right, #ff8c00, #ff0080, #007bff);
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+#back-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/*=====================================
+  8. Media Queries (Απόκριση σε οθόνες)
+=======================================*/
+@media (max-width: 900px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-actions {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 1rem;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .main-layout {
+        padding: 0 10px;
+    }
+
+    .about-me-intro {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .parallax-section {
+        background-attachment: scroll;
+        height: 40vh;
+    }
+
+    .contact-section form {
+        max-width: 100%;
+    }
+
+    #search-form {
+        max-width: 100%;
+    }
+
+    .topbar-social {
+        justify-content: center;
+        padding: 10px 5px;
+        flex-wrap: wrap;
+        gap: 8px;
+        font-size: 0.75rem;
+        background-color: #111;
+    }
+
+    .topbar-social a {
+        font-size: 14px;
+        margin: 0 4px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .navbar .d-flex {
+        align-items: center;
+        text-align: center;
+    }
+
+    .toggle-dark-mode {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 768px) {
+    .content {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .hero-img {
+        max-width: 400px;
+    }
+
+    .hero-text {
+        flex: 1;
+    }
+}
+/*=====================================
+  7.1 Στυλ για τη σελίδα "Σχετικά με εμένα"
+=======================================*/
+.about-me-intro {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.about-me-image {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.about-me-intro img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    box-shadow: 0 0 15px var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.about-me-intro img:hover {
+    transform: scale(1.05);
+}
+
+.about-text h2 {
+    margin-top: 0;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+}
+
+.custom-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.custom-list li {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-list li i {
+    color: #4CAF50; /* Χρώμα για το εικονίδιο */
+    font-size: 1.3rem;
+}
+
+.skills-section {
+    padding: 30px;
+    margin-top: 40px;
+}
+
+.skills-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.skills-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #00f5d4, #9b5de5, #00bbf9);
+    border-radius: 2px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.skill-card {
+    background-color: var(--primary-bg);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.skill-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.skill-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .about-me-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+/*=====================================
+  7.2 Στυλ για τη σελίδα "Επικοινωνία"
+=======================================*/
+.contact-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact-section label {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.contact-section input,
+.contact-section textarea {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.contact-section button[type="submit"] {
+    padding: 12px 20px;
+    background: linear-gradient(to right, #ff8c00, #ff0080, #007bff);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.contact-section button[type="submit"]:hover {
+    opacity: 0.85;
+}
+/*=====================================
+  Posts Section
+=======================================*/
+.posts-section {
+    background-color: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.posts-section h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.posts-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #ff8c00, #ff0080, #8000ff);
+    border-radius: 2px;
+}
+
+.posts-section p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #b0b0b0;
+    font-size: 1.1rem;
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.blog-post {
+    background-color: var(--primary-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.blog-post:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.blog-post h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin-bottom: 15px;
+}
+
+.post-meta .post-category {
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.blog-post p {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #e0e0e0;
+}
+
+.read-more {
+    margin-top: auto;
+    display: inline-block;
+    padding: 10px 15px;
+    background: linear-gradient(to right, #ff8c00, #ff0080, #007bff);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+    text-align: center;
+}
+
+.read-more:hover {
+    opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+    .post-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/*=====================================
+  Posts Section
+=======================================*/
+.posts-section {
+    background-color: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.posts-section h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.posts-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #ff8c00, #ff0080, #8000ff);
+    border-radius: 2px;
+}
+
+.posts-section p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #b0b0b0;
+    font-size: 1.1rem;
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.blog-post {
+    background-color: var(--primary-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.blog-post:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.blog-post h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin-bottom: 15px;
+}
+
+.post-meta .post-category {
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.blog-post p {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #e0e0e0;
+}
+
+.read-more {
+    margin-top: auto;
+    display: inline-block;
+    padding: 10px 15px;
+    background: linear-gradient(to right, #ff8c00, #ff0080, #007bff);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+    text-align: center;
+}
+
+.read-more:hover {
+    opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+    .post-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/*=====================================
+  Single Post Styling
+=======================================*/
+.single-post {
+    flex: 1;
+    background-color: var(--secondary-bg);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.post-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.post-header h1 {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.post-header .post-meta {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 10px;
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.post-content h3 {
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+}
+
+.post-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.post-content pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-top: 1rem;
+}
+
+.post-content pre code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.post-content strong {
+    color: var(--primary-color);
+}
+
+.post-navigation {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.back-to-blog {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(to right, #ff0080, #8000ff);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-to-blog:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+    .single-post {
+        padding: 1.5rem;
+    }
+    .post-header h1 {
+        font-size: 2rem;
+    }
+    .post-header .post-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+/*=====================================
+  Recent Posts Grid
+=======================================*/
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+.post-card {
+    background-color: var(--secondary-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.post-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.post-card-content {
+    padding: 20px;
+}
+
+.post-card-content h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.post-card-content h3 a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.post-card-content h3 a:hover {
+    color: #fff;
+}
+
+.post-card-content p {
+    font-size: 1rem;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease;
+}
+
+.read-more:hover {
+    border-bottom: 2px solid var(--primary-color);
+}
+/*=====================================
+  Weather Panel
+=======================================*/
+#weather-panel {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.weather-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.weather-info img {
+    width: 60px;
+    height: 60px;
+}
+
+.weather-info .temp {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.weather-info .description {
+    font-size: 1rem;
+    margin: 0;
+    text-transform: capitalize;
+}
+/*=====================================
+  Photo of the Day
+=======================================*/
+.photo-of-the-day-section {
+    padding: 15px;
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.photo-of-the-day-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.apod-image {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.apod-content h4 {
+    margin-top: 0;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.apod-explanation {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #b0b0b0;
+    max-height: 100px;
+    overflow-y: auto;
+}
+/*=====================================
+  Sidebar Separators
+=======================================*/
+.sidebar section:not(:last-child) {
+    position: relative;
+    padding-bottom: 25px; /* Δίνει χώρο για τη γραμμή */
+    margin-bottom: 25px;  /* Δίνει χώρο από το επόμενο τμήμα */
+}
+
+.sidebar section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Πλάτος της γραμμής */
+    height: 2px; /* Πάχος της γραμμής */
+    background: var(--primary-color); /* Χρησιμοποιεί το βασικό μας χρώμα */
+    border-radius: 2px;
+}
+.scrolling-bar {
+    width: 100%;
+    background-color: #fffae6; /* φόντο μπάρας */
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 5px 0;
+    position: relative;
+}
+
+.scrolling-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 20s linear infinite;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+/* Κυλιόμενη μπάρα με fade στα άκρα */
+.scrolling-bar {
+    position: relative;
+    width: 100%;
+    background-color: #111; /* Ανοιχτό μαύρο φόντο */
+    overflow: hidden;
+    height: 40px; /* Ύψος μπάρας */
+}
+
+.scrolling-bar::before,
+.scrolling-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50px; /* Πλάτος fade */
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.scrolling-bar::before {
+    left: 0;
+    background: linear-gradient(to right, #111 0%, transparent 100%);
+}
+
+.scrolling-bar::after {
+    right: 0;
+    background: linear-gradient(to left, #111 0%, transparent 100%);
+}
+
+.scrolling-bar p {
+    display: inline-block;
+    color: #fff; /* Λευκό κείμενο */
+    white-space: nowrap;
+    padding: 10px 0;
+    margin: 0;
+    animation: scroll-text 15s linear infinite;
+    position: relative;
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+.site-title {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.site-icon {
+    margin-right: 8px;
+    color: #fff;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+.site-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* απόσταση μεταξύ icon και κειμένου */
+    font-size: 1.5rem;
+    color: white; /* άσπρα γράμματα */
+}
+
+.site-icon {
+    font-size: 2rem;
+    color: white;
+}
+.form-warning {
+    background-color: #ffcc00; /* κίτρινο προειδοποιητικό */
+    color: #000; /* μαύρο κείμενο */
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.category-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.post-card {
+    background-color: #1e1e1e; /* Σκούρο φόντο */
+    color: #ffffff; /* Άσπρα γράμματα */
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.post-card .post-image {
+    width: 100%;
+    height: 180px; /* Σταθερό ύψος εικόνας */
+    overflow: hidden;
+}
+
+.post-card .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Η εικόνα γεμίζει τον χώρο χωρίς να παραμορφώνεται */
+    display: block;
+}
+
+.post-card h2 {
+    font-size: 1.2rem;
+    margin: 15px;
+}
+
+.post-card p {
+    font-size: 0.95rem;
+    margin: 0 15px 15px 15px;
+    line-height: 1.4;
+}
+
+.post-card .read-more {
+    margin: 0 15px 15px 15px;
+    text-decoration: none;
+    color: #00bfff;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.post-card .read-more:hover {
+    color: #ff9800;
+}
+
+

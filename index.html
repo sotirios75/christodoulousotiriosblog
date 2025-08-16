@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Το Ιστολόγιό Μου</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Κινούμενη μπάρα μηνύματος -->
+<div class="scrolling-bar">
+    <p>Το ιστολόγιο xrisotblogspot λειτουργεί αποκλειστικά μόνο για εκπαιδευτικούς και δοκιμαστικούς σκοπούς</p>
+</div>
+
+<header>
+    <div class="topbar-social">
+        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.youtube.com/" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+	
+	
+    <h1>
+        <i class="fas fa-blog site-icon"></i>
+		xrisotblogspot
+    </h1>
+    
+    <div class="header-actions">
+        <nav>
+            <ul>
+                <li><a href="index.html">Αρχική</a></li>
+                <li><a href="about.html">Σχετικά με εμένα</a></li>
+                <li><a href="contact.html">Επικοινωνία</a></li>
+            </ul>
+        </nav>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Αναζήτηση άρθρων...">
+        </form>
+        <div id="current-datetime"></div>
+        <button id="theme-toggle-btn">Αλλαγή Θέματος</button>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="content">
+        <h1 class="aurora-text">Ανακαλύψτε έναν νέο κόσμο</h1>
+        <p>Μπείτε στον κόσμο της τεχνολογίας, του προγραμματισμού και του ψηφιακού μάρκετινγκ.</p>
+    </div>
+</section>
+    
+<main class="main-layout">
+    <div class="main-content">
+        <section class="featured-post">
+            <h2>Προτεινόμενο Άρθρο</h2>
+            <div class="featured-card">
+                <img src="./images/web-scraping.jpg" alt="Web Scraping" class="featured-image">
+                <div class="featured-content">
+                    <h3><a href="post1.html">Οδηγός για το Web Scraping με Python</a></h3>
+                    <div class="post-meta">
+                        <span><i class="fas fa-calendar-alt"></i> 24 Αυγούστου, 2025</span>
+                        <span><i class="fas fa-tag"></i> Τεχνολογία</span>
+                    </div>
+                    <p>Το web scraping είναι μια ισχυρή τεχνική για τη συλλογή δεδομένων από ιστοσελίδες. Στον οδηγό αυτό, θα δούμε πώς μπορούμε να χρησιμοποιήσουμε τη γλώσσα προγραμματισμού Python και τις δημοφιλείς βιβλιοθήκες <strong>Beautiful Soup</strong> και <strong>Requests</strong>...</p>
+                    <a href="post1.html" class="read-more">Διαβάστε περισσότερα</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-posts">
+            <h2>Πρόσφατα Άρθρα</h2>
+            <p>Ανακαλύψτε τις τελευταίες δημοσιεύσεις μου σχετικά με την τεχνολογία, το data science και άλλα ενδιαφέροντα θέματα.</p>
+            <ul>
+                <li><a href="post1.html">Οδηγός για το Web Scraping με Python</a></li>
+                <li><a href="post2.html">Η Εισαγωγή στη Μηχανική Μάθηση</a></li>
+                <li><a href="post3.html">5 Απαραίτητα Εργαλεία για κάθε Data Scientist</a></li>
+                <li><a href="post4.html">Πώς να βελτιστοποιήσετε το SEO της σελίδας σας</a></li>
+            </ul>
+        </section>
+		
+		
+
+            
+
+    </div>
+	
+    
+    <aside class="sidebar">
+        <section class="photo-of-the-day-section">
+            <h3>Φωτογραφία της Ημέρας</h3>
+            <div id="apod-container">
+                <p>Φόρτωση φωτογραφίας...</p>
+            </div>
+        </section>
+
+        <section>
+            <h3>Κατηγορίες</h3>
+            <ul>
+                <li><a href="technology.html">Τεχνολογία</a></li>
+                <li><a href="travel.html">Ταξίδια</a></li>
+                <li><a href="free-time.html">Ελευθερος χρονος</a></li>
+				
+            </ul>
+        </section>
+        
+        <section>
+            <h3>Τελευταίες Ειδήσεις</h3>
+            <div id="news-panel">
+                <p>Φόρτωση ειδήσεων...</p>
+            </div>
+        </section>
+        
+        <section>
+            <h3>Καιρός στην Αθήνα</h3>
+            <div id="weather-panel">
+                <p>Φόρτωση καιρού...</p>
+            </div>
+        </section>
+    </aside>
+</main>
+
+<button id="back-to-top-btn" title="Επιστροφή στην κορυφή">↑</button>
+
+<footer>
+    <p id="random-moto"></p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/YourProfile" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/YourProfile" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/YourProfile" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    // Ενεργοποίηση active link
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('header nav a');
+        navLinks.forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });
+
+        // Τυχαία μότο
+        const motos = [
+            "Η γνώση είναι δύναμη.",
+            "Κάθε μέρα μια νέα αρχή.",
+            "Η δημιουργικότητα δεν έχει όρια.",
+            "Το μέλλον ξεκινά σήμερα.",
+            "Σκέψου έξω από το κουτί.",
+            "Η επιτυχία θέλει επιμονή.",
+            "Η τεχνολογία αλλάζει τον κόσμο.",
+            "Το ταξίδι έχει σημασία, όχι ο προορισμός.",
+            "Κάθε ιδέα μπορεί να αλλάξει τον κόσμο.",
+            "Μάθε, δημιούργησε, εμπνεύσου."
+        ];
+
+        const randomMoto = motos[Math.floor(Math.random() * motos.length)];
+        document.getElementById('random-moto').textContent = randomMoto;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Επικοινωνία | Το Προσωπικό Μου Ιστολόγιο</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="topbar-social">
+            <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <h1>xrisot@blogspot</h1>
+        
+        <div class="header-actions">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Αρχική</a></li>
+                    <li><a href="about.html">Σχετικά με εμένα</a></li>
+                    <li><a href="contact.html">Επικοινωνία</a></li>
+                </ul>
+            </nav>
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Αναζήτηση άρθρων...">
+            </form>
+            <div id="current-datetime"></div>
+            <button id="theme-toggle-btn">Αλλαγή Θέματος</button>
+        </div>
+    </header>
+	
+	<!-- Section επικοινωνίας με GDPR προειδοποίηση -->
+        <section class="contact-section">
+            <h2>Επικοινωνία</h2>
+
+            <div class="form-warning">
+                ⚠️ Η φόρμα επικοινωνίας δεν λειτουργεί προσωρινά λόγω GDPR. 
+                Δεν συλλέγουμε προσωπικά δεδομένα.
+            </div>
+			
+			<form id="contact-form">
+                <label for="name">Όνομα:</label>
+                <input type="text" id="name" name="name" placeholder="Το όνομά σας" disabled>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Το email σας" disabled>
+
+                <label for="message">Μήνυμα:</label>
+                <textarea id="message" name="message" placeholder="Το μήνυμά σας" disabled></textarea>
+
+                <button type="submit" disabled>Υποβολή</button>
+            </form>
+        </section>
+
+    
+
+    <footer>
+        <p class="footer-moto">Ζήσε τη στιγμή, μοιράσου την εμπειρία!</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/YourProfile" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/YourProfile" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/YourProfile" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('header nav a');
+            navLinks.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add('active');
+                }
+            });
+        });
+		
+		// Τυχαία μότο
+        const motos = [
+            "Η γνώση είναι δύναμη.",
+            "Κάθε μέρα μια νέα αρχή.",
+            "Η δημιουργικότητα δεν έχει όρια.",
+            "Το μέλλον ξεκινά σήμερα.",
+            "Σκέψου έξω από το κουτί.",
+            "Η επιτυχία θέλει επιμονή.",
+            "Η τεχνολογία αλλάζει τον κόσμο.",
+            "Το ταξίδι έχει σημασία, όχι ο προορισμός.",
+            "Κάθε ιδέα μπορεί να αλλάξει τον κόσμο.",
+            "Μάθε, δημιούργησε, εμπνεύσου."
+        ];
+
+        const randomMoto = motos[Math.floor(Math.random() * motos.length)];
+        document.getElementById('random-moto').textContent = randomMoto;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Σχετικά με εμένα - Το Προσωπικό Μου Ιστολόγιο</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="topbar-social">
+            <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+		<h1>
+            <i class="fas fa-blog site-icon"></i>
+		    xrisotblogspot
+        </h1>
+        
+        <div class="header-actions">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Αρχική</a></li>
+                    <li><a href="about.html">Σχετικά με εμένα</a></li>
+                    <li><a href="contact.html">Επικοινωνία</a></li>
+                </ul>
+            </nav>
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Αναζήτηση άρθρων...">
+            </form>
+            <div id="current-datetime"></div>
+            <button id="theme-toggle-btn">Αλλαγή Θέματος</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-me-intro">
+            <div class="about-me-image">
+                <img src="./images/vip.jpg" alt="Χριστοδούλου Σωτήριος">
+            </div>
+            <div class="about-text">
+                <h2>Γεια σας! Είμαι ο Χριστοδούλου Σωτήριος</h2>
+                <p>Γεννημενος στην Αθηνα το 1975.Σε αυτό το blog, μοιράζομαι σκέψεις και γνώσεις γύρω από την τεχνολογία, την Τεχνητή Νοημοσύνη και το software managment. Η πορεία μου στον χώρο ξεκίνησε...</p>
+                
+                <ul class="custom-list">
+                    <li><i class="fas fa-check-circle"></i> **Network technician και System Administrator</li>
+                    <li><i class="fas fa-check-circle"></i> **Τεχνικός υπολογιστών και πληροφορικής</li>
+                    <li><i class="fas fa-check-circle"></i> **Ενδιαφέροντα:** Τεχνολογία, Τεχνητή Νοημοσύνη, social media</li>
+                    <li><i class="fas fa-check-circle"></i> **Στόχος:** Να δημιουργήσω περιεχόμενο που θα βοηθήσει και θα εμπνεύσει άλλους να ασχοληθούν με τον χώρο της τεχνολογίας.</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="separator"></div>
+
+        <section class="skills-section">
+            <h2>Δεξιότητες & Γνώσεις</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Software Engineer</h3>
+                    <p>Εμπειρία με τη δημιουργία, τον σχεδιασμό, την ανάπτυξη και τη συντήρηση συστημάτων λογισμικού.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Εξοικείωση με HTML, CSS, JavaScript και πλατφόρμες όπως το Vue.js για τη δημιουργία σύγχρονων ιστοσελίδων.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Τεχνητή Νοημοσύνη</h3>
+                    <p>Συμμετοχή σε εφαρμογές AI, με έμφαση στη δημιουργική χρήση αλγορίθμων.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Ψηφιακό Μάρκετινγκ</h3>
+                    <p>Κατανόηση των τεχνικών SEO, social media marketing και analytics για τη βελτιστοποίηση της online παρουσίας.</p>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <button id="back-to-top-btn" title="Επιστροφή στην κορυφή">↑</button>
+
+    <footer>
+        <p class="footer-moto">Η γνώση μεγαλώνει όταν τη μοιράζεσαι.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/YourProfile" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/YourProfile" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/YourProfile" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('header nav a');
+            navLinks.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
