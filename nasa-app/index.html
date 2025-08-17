@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>NASA APOD</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 2rem; }
+    img { max-width: 100%; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+  </style>
+</head>
+<body>
+  <h1 id="title">Φωτογραφία NASA</h1>
+  <img id="img" alt="NASA APOD" />
+  <p id="desc"></p>
+
+  <script>
+    async function loadAPOD() {
+      const r = await fetch("/api/nasa?endpoint=planetary/apod&date=2025-08-17");
+      const d = await r.json();
+      document.querySelector("#title").textContent = d.title;
+      document.querySelector("#img").src = d.url;
+      document.querySelector("#desc").textContent = d.explanation;
+    }
+    loadAPOD();
+  </script>
+</body>
+</html>

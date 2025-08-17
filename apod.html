@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Φωτογραφία της Ημέρας - NASA APOD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        p {
+            max-width: 800px;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Φωτογραφία της Ημέρας</h1>
+    <p id="title"></p>
+    <img id="apod" src="" alt="Φωτογραφία της Ημέρας">
+    <p id="explanation"></p>
+
+    <script>
+        // Βάλε εδώ το δικό σου NASA API Key
+        const apiKey = "A7TJqR1Gt8ul54EfMKpyb0ltazHIEUNvBo6smK8J"; // Αν έχεις δικό σου, βάλτο εδώ
+        const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("apod").src = data.url;
+                document.getElementById("title").innerText = data.title;
+                document.getElementById("explanation").innerText = data.explanation;
+            })
+            .catch(error => {
+                console.error("Σφάλμα φόρτωσης APOD:", error);
+                document.getElementById("title").innerText = "Δεν ήταν δυνατή η φόρτωση της εικόνας σήμερα.";
+            });
+    </script>
+</body>
+</html>

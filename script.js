@@ -193,3 +193,19 @@ async function fetchApod() {
 }
 
 document.addEventListener('DOMContentLoaded', fetchApod);
+const apiKey = "DEMO_KEY"; // βάλτο με το δικό σου API Key
+fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`)
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("title").innerText = data.title;
+        document.getElementById("explanation").innerText = data.explanation;
+        if (data.media_type === "image") {
+            document.getElementById("apod").src = data.url;
+        } else {
+            document.getElementById("apod").alt = "Η Φωτογραφία της Ημέρας είναι βίντεο σήμερα.";
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        document.getElementById("title").innerText = "Δεν ήταν δυνατή η φόρτωση της εικόνας σήμερα.";
+    });

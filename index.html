@@ -163,5 +163,40 @@
         document.getElementById('random-moto').textContent = randomMoto;
     });
 </script>
+
+<script>
+const apiKey = "A7TJqR1Gt8ul54EfMKpyb0ltazHIEUNvBo6smK8J"; // Βάλε το δικό σου NASA API Key
+fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`)
+    .then(res => res.json())
+    .then(data => {
+        const container = document.getElementById("apod-container");
+        container.innerHTML = ""; // Καθαρίζει το "Φόρτωση φωτογραφίας..."
+
+        if (data.media_type === "image") {
+            const img = document.createElement("img");
+            img.src = data.url;
+            img.alt = data.title;
+            img.style.maxWidth = "100%";
+            img.style.borderRadius = "10px";
+            container.appendChild(img);
+        } else {
+            const msg = document.createElement("p");
+            msg.innerText = "Η Φωτογραφία της Ημέρας είναι βίντεο σήμερα.";
+            container.appendChild(msg);
+        }
+
+        const title = document.createElement("p");
+        title.innerText = data.title;
+        title.style.fontWeight = "bold";
+        container.appendChild(title);
+    })
+    .catch(err => {
+        console.error(err);
+        const container = document.getElementById("apod-container");
+        container.innerHTML = "<p>Δεν ήταν δυνατή η φόρτωση της εικόνας σήμερα.</p>";
+    });
+</script>
+    <script src="script.js"></script>
+
 </body>
 </html>
