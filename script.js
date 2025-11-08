@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newsPanel = document.getElementById('news-panel');
 
     async function fetchNews() {
-        const apiKey = '18bd6e142b986aa12b716d303f7fabea';
+        const apiKey = '119545ef17ea149e6283e0a899686387';
         const url = `https://gnews.io/api/v4/top-headlines?lang=el&token=${apiKey}`;
 
         if (!newsPanel) {
