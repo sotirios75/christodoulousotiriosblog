@@ -81,26 +81,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const newsPanel = document.getElementById('news-panel');
 
     async function fetchNews() {
-        const apiKey = '119545ef17ea149e6283e0a899686387';
-        const url = `https://gnews.io/api/v4/top-headlines?lang=el&token=${apiKey}`;
+        // Χρησιμοποιούμε το Top Headlines ως παράδειγμα
+const API_KEY = '09612093eb6246a7be786def9e89179d'; 
 
-        if (!newsPanel) {
-            console.error('Το στοιχείο #news-panel δεν βρέθηκε στο DOM.');
-            return;
-        }
+const url = `https://newsapi.org/v2/top-headlines?country=gr&pageSize=5&apiKey=${API_KEY}`;
 
-        newsPanel.innerHTML = '<p>Φόρτωση ειδήσεων...</p>';
-
-        try {
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-            const data = await response.json();
-
-            if (!data.articles || data.articles.length === 0) {
-                newsPanel.innerHTML = '<p>Δεν βρέθηκαν ειδήσεις.</p>';
-                return;
-            }
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    // Εδώ χειρίζεστε τα δεδομένα και τα εμφανίζετε στο HTML
+    console.log(data.articles);
+    // ... κώδικας για την εμφάνιση της ροής
+  })
+  .catch(error => {
+    console.error('Σφάλμα κατά την λήψη ειδήσεων:', error);
+  });
 
             const newsList = document.createElement('ul');
             data.articles.forEach(article => {
