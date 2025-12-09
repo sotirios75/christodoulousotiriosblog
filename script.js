@@ -79,41 +79,54 @@ if (commentForm && commentsContainer) {
 // Λογική για το news panel (Τελευταίες Ειδήσεις)
 document.addEventListener('DOMContentLoaded', () => {
     const newsPanel = document.getElementById('news-panel');
+    const API_KEY = '09612093eb6246a7be786def9e89179d'; // Βάλτε το δικό σας κλειδί
 
     async function fetchNews() {
         // Χρησιμοποιούμε το Top Headlines ως παράδειγμα
-const API_KEY = '09612093eb6246a7be786def9e89179d'; 
+        const url = `https://newsapi.org/v2/top-headlines?country=gr&pageSize=5&apiKey=${API_KEY}`;
 
-const url = `https://newsapi.org/v2/top-headlines?country=gr&pageSize=5&apiKey=${API_KEY}`;
+        try {
+            // 1. Κάνουμε την κλήση και περιμένουμε την απάντηση (Response)
+            const response = await fetch(url);
+            
+            // 2. Ελέγχουμε αν η απάντηση ήταν επιτυχής (π.χ. Status 200)
+            if (!response.ok) {
+                // Εάν το API επιστρέψει σφάλμα (π.χ. 429 Too Many Requests), πετάμε error
+                throw new Error(`HTTP Error! Status: ${response.status}`);
+            }
 
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    // Εδώ χειρίζεστε τα δεδομένα και τα εμφανίζετε στο HTML
-    console.log(data.articles);
-    // ... κώδικας για την εμφάνιση της ροής
-  })
-  .catch(error => {
-    console.error('Σφάλμα κατά την λήψη ειδήσεων:', error);
-  });
+            // 3. Μετατρέπουμε την απάντηση σε JSON και περιμένουμε τα δεδομένα (Data)
+            const data = await response.json();
 
+            // 4. Ελέγχουμε την κατάσταση του API (NewsAPI)
+            if (data.status !== 'ok') {
+                throw new Error(`NewsAPI Error: ${data.message}`);
+            }
+
+            // 5. ΤΩΡΑ τα δεδομένα (data) είναι διαθέσιμα και μπορούμε να τα χρησιμοποιήσουμε.
             const newsList = document.createElement('ul');
-            data.articles.forEach(article => {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = article.url;
-                link.textContent = article.title;
-                link.target = '_blank';
-                listItem.appendChild(link);
-                newsList.appendChild(listItem);
-            });
-
-            newsPanel.innerHTML = '';
-            newsPanel.appendChild(newsList);
+            
+            // Εάν δεν υπάρχουν άρθρα, εμφανίζουμε ένα μήνυμα
+            if (data.articles && data.articles.length > 0) {
+                data.articles.forEach(article => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = article.url;
+                    link.textContent = article.title;
+                    link.target = '_blank';
+                    listItem.appendChild(link);
+                    newsList.appendChild(listItem);
+                });
+                newsPanel.innerHTML = '';
+                newsPanel.appendChild(newsList);
+            } else {
+                newsPanel.innerHTML = `<p>Δεν βρέθηκαν άρθρα για εμφάνιση.</p>`;
+            }
 
         } catch (error) {
             console.error('Σφάλμα κατά τη φόρτωση ειδήσεων:', error);
-            newsPanel.innerHTML = `<p>Αδύνατη η φόρτωση ειδήσεων.</p>`;
+            // Εμφάνιση του σφάλματος στο panel
+            newsPanel.innerHTML = `<p>Αδύνατη η φόρτωση ειδήσεων: ${error.message}</p>`;
         }
     }
 
