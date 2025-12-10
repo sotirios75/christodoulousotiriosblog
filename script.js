@@ -79,11 +79,11 @@ if (commentForm && commentsContainer) {
 // Λογική για το news panel (Τελευταίες Ειδήσεις)
 document.addEventListener('DOMContentLoaded', () => {
     const newsPanel = document.getElementById('news-panel');
-    const API_KEY = '09612093eb6246a7be786def9e89179d'; // Βάλτε το δικό σας κλειδί
+    const API_KEY = '18bd6e142b986aa12b716d303f7fabea'; // Βάλτε το δικό σας κλειδί
 
     async function fetchNews() {
         // Χρησιμοποιούμε το Top Headlines ως παράδειγμα
-        const url = `https://newsapi.org/v2/top-headlines?country=gr&pageSize=5&apiKey=${API_KEY}`;
+        const url = `https://gnews.io/api/v4/top-headlines?lang=el&token=${apiKey}`;
 
         try {
             // 1. Κάνουμε την κλήση και περιμένουμε την απάντηση (Response)
