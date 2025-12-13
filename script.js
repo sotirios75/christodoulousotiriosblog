@@ -82,7 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const API_KEY = '18bd6e142b986aa12b716d303f7fabea';
 
     async function fetchNews() {
-        const url = `https://gnews.io/api/v4/top-headlines?lang=el&token=${API_KEY}`;
+        // ΣΩΣΤΟ API endpoint με apikey
+        const url = `https://gnews.io/api/v4/top-headlines?lang=el&country=gr&apikey=${API_KEY}`;
 
         try {
             const response = await fetch(url);
@@ -93,32 +94,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
 
-            const newsList = document.createElement('ul');
-
-            if (data.articles && data.articles.length > 0) {
-                data.articles.forEach(article => {
-                    const listItem = document.createElement('li');
-                    const link = document.createElement('a');
-                    link.href = article.url;
-                    link.textContent = article.title;
-                    link.target = '_blank';
-                    listItem.appendChild(link);
-                    newsList.appendChild(listItem);
-                });
-                newsPanel.innerHTML = '';
-                newsPanel.appendChild(newsList);
-            } else {
+            // Αν δεν υπάρχουν άρθρα
+            if (!data.articles || data.articles.length === 0) {
                 newsPanel.innerHTML = `<p>Δεν βρέθηκαν άρθρα για εμφάνιση.</p>`;
+                return;
             }
 
+            const newsList = document.createElement('ul');
+            data.articles.forEach(article => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = article.url;
+                link.textContent = article.title;
+                link.target = '_blank';
+                listItem.appendChild(link);
+                newsList.appendChild(listItem);
+            });
+
+            newsPanel.innerHTML = '';
+            newsPanel.appendChild(newsList);
+
         } catch (error) {
-            console.error('Σφάλμα κατά τη φόρτωση ειδήσεων:', error);
+            console.error('Σφάλμα ειδήσεων:', error);
             newsPanel.innerHTML = `<p>Αδύνατη η φόρτωση ειδήσεων: ${error.message}</p>`;
         }
     }
 
     fetchNews();
 });
+
 
 
 // Weather API
