@@ -79,34 +79,22 @@ if (commentForm && commentsContainer) {
 // Λογική για το news panel (Τελευταίες Ειδήσεις)
 document.addEventListener('DOMContentLoaded', () => {
     const newsPanel = document.getElementById('news-panel');
-    const API_KEY = '18bd6e142b986aa12b716d303f7fabea'; // Βάλτε το δικό σας κλειδί
+    const API_KEY = '18bd6e142b986aa12b716d303f7fabea';
 
     async function fetchNews() {
-        // Χρησιμοποιούμε το Top Headlines ως παράδειγμα
-        const url = `https://gnews.io/api/v4/top-headlines?lang=el&token=${apiKey}`;
+        const url = `https://gnews.io/api/v4/top-headlines?lang=el&token=${API_KEY}`;
 
         try {
-            // 1. Κάνουμε την κλήση και περιμένουμε την απάντηση (Response)
             const response = await fetch(url);
-            
-            // 2. Ελέγχουμε αν η απάντηση ήταν επιτυχής (π.χ. Status 200)
+
             if (!response.ok) {
-                // Εάν το API επιστρέψει σφάλμα (π.χ. 429 Too Many Requests), πετάμε error
                 throw new Error(`HTTP Error! Status: ${response.status}`);
             }
 
-            // 3. Μετατρέπουμε την απάντηση σε JSON και περιμένουμε τα δεδομένα (Data)
             const data = await response.json();
 
-            // 4. Ελέγχουμε την κατάσταση του API (NewsAPI)
-            if (data.status !== 'ok') {
-                throw new Error(`NewsAPI Error: ${data.message}`);
-            }
-
-            // 5. ΤΩΡΑ τα δεδομένα (data) είναι διαθέσιμα και μπορούμε να τα χρησιμοποιήσουμε.
             const newsList = document.createElement('ul');
-            
-            // Εάν δεν υπάρχουν άρθρα, εμφανίζουμε ένα μήνυμα
+
             if (data.articles && data.articles.length > 0) {
                 data.articles.forEach(article => {
                     const listItem = document.createElement('li');
@@ -125,13 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Σφάλμα κατά τη φόρτωση ειδήσεων:', error);
-            // Εμφάνιση του σφάλματος στο panel
             newsPanel.innerHTML = `<p>Αδύνατη η φόρτωση ειδήσεων: ${error.message}</p>`;
         }
     }
 
     fetchNews();
 });
+
 
 // Weather API
 const weatherPanel = document.getElementById('weather-panel');
