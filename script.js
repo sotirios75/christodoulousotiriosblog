@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchNews() {
         // ΣΩΣΤΟ API endpoint με apikey
-        const url = `https://gnews.io/api/v4/top-headlines?lang=el&country=gr&apikey=${API_KEY}`;
+        const url = `https://christodoulousotiriosblog.sxrhstou76.workers.dev`;
 
         try {
             const response = await fetch(url);
