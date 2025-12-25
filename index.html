@@ -296,67 +296,6 @@ fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`)
     });
 </script>
     <script src="script.js"></script>
-<script>
-(function () {
-  const canvas = document.createElement("canvas");
-  canvas.id = "snow";
-  document.body.appendChild(canvas);
-
-  const ctx = canvas.getContext("2d");
-  let w = window.innerWidth;
-  let h = window.innerHeight;
-  canvas.width = w;
-  canvas.height = h;
-
-  const flakes = [];
-
-  for (let i = 0; i < 100; i++) {
-    flakes.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 4 + 1,
-      d: Math.random() * 1
-    });
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = "white";
-    ctx.beginPath();
-    for (let i = 0; i < flakes.length; i++) {
-      const f = flakes[i];
-      ctx.moveTo(f.x, f.y);
-      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
-    }
-    ctx.fill();
-    move();
-  }
-
-  let angle = 0;
-  function move() {
-    angle += 0.01;
-    for (let i = 0; i < flakes.length; i++) {
-      const f = flakes[i];
-      f.y += Math.cos(angle + f.d) + 1;
-      f.x += Math.sin(angle) * 0.5;
-
-      if (f.y > h) {
-        flakes[i] = { x: Math.random() * w, y: 0, r: f.r, d: f.d };
-      }
-    }
-  }
-
-  setInterval(draw, 33);
-
-  window.addEventListener("resize", () => {
-    w = window.innerWidth;
-    h = window.innerHeight;
-    canvas.width = w;
-    canvas.height = h;
-  });
-})();
-</script>
-	
 
 </body>
 </html>
